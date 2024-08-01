@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 
 import static javax.sound.midi.ShortMessage.*;
 
-public class BeatBoxApp {
+public class BeatBoxGUI {
     private JList<String> incomingList;
     private JTextArea userMessage;
     private ArrayList<JCheckBox> checkboxList;
@@ -39,7 +39,7 @@ public class BeatBoxApp {
     int[] instruments = {35, 42, 46, 38, 49, 39, 50, 60, 70, 72, 64, 56, 58, 47, 67, 63};
 
     public static void main(String[] args) {
-        new BeatBoxApp().startUp("BeatBox");
+        new BeatBoxGUI().startUp("Puma");
     }
 
     public void startUp(String name) {
@@ -47,6 +47,7 @@ public class BeatBoxApp {
         // open connection to the server
         try {
             Socket socket = new Socket("127.0.0.1", 4242);
+            // IDEA предлагает try-with-resources - не слушай, сломает
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             ExecutorService executor = Executors.newSingleThreadExecutor();
